@@ -18,8 +18,11 @@ const getTokenBalance = async (address) => {
       chain: "0x1", // ETH Mainnet
       address: address,
     });
+    
+    const resJson = JSON.parse(JSON.stringify(res));
+    resJson.sort((a, b) => a.possible_spam - b.possible_spam);
 
-    return res;
+    return resJson;
   } catch (err) {
     throw err;
   }

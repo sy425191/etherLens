@@ -1,32 +1,38 @@
 import { useState } from "react";
-import { Navbar } from "../components";
+import { AddressScreen, EmptyLanding, Navbar } from "../components";
+import { addressInfo } from "../api";
 
 const LandingPage = () => {
-  const [search, setSearch] = useState(false);
+  const [searchType, setSearchType] = useState("");
+  const [searchResult, setSearchResult] = useState(null);
+
+  const submitHandler = (searchTerm) => {
+    const submitTermLength = searchTerm.length;
+    if (submitTermLength === 42) {
+      setSearchType("address");
+      addressInfo(searchTerm)
+        .then((data) => {
+          setSearchResult(data);
+        })
+        .catch((err) => console.log(err));
+    } else if (submitTermLength === 66) {
+      setSearchType("transaction");
+      setSearchResult(searchTerm);
+    } else {
+      // Snackbar
+    }
+  };
 
   return (
     <div className="w-full h-full text-white bg-slate-900">
-      <Navbar />
+      <Navbar submitHandler={submitHandler} />
 
-      {!search && (
-        <div className="w-full h-[80%] flex justify-center items-center">
-          <div className="w-1/2 flex flex-row justify-center items-center">
-            <div className="text-4xl font-semibold max-w-96 z-10">
-              <div>A Blockchain Explorer for the People</div>
-              <div className="text-xs w-fit px-4 py-2 rounded-xl font-normal cursor-pointer border-2 border-slate-500 bg-slate-600 mt-4">
-                CTRL + K to search
-              </div>
-            </div>
-            <div className="absolute flex justify-center items-center">
-              {/* arrow pointing to search of navbar */}
-              <img
-                src="/landing.png"
-                alt="landing"
-                className="w-1/4 mb-24 ml-24 -rotate-12"
-              />
-            </div>
-          </div>
-        </div>
+      {!searchType ? (
+        <EmptyLanding />
+      ) : searchType === "address" ? (
+        <AddressScreen addressDetails={searchResult} />
+      ) : (
+        <div>Transaction</div>
       )}
     </div>
   );
