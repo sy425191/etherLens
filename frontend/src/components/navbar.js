@@ -11,6 +11,7 @@ const Navbar = () => {
   };
 
   const setEventListener = () => {
+    inpurRef.current.focus();
     window.addEventListener("keydown", handler);
   };
 
@@ -33,7 +34,7 @@ const Navbar = () => {
           ref={inpurRef}
         />
         <div className="h-12 flex justify-center items-center px-4 bg-slate-900 rounded-r-xl border-2 border-slate-500 cursor-pointer hover:bg-slate-500 transition duration-300 ease-in-out">
-            Search
+          Search
         </div>
       </div>
       <div className="flex justify-end items-center text-white pr-4">🔔</div>
