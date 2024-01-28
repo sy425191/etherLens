@@ -44,7 +44,7 @@ const normalTransaction = async (address, page, offset) => {
 
 const internalTransaction = async (address, page, offset) => {
   try {
-    const res = await Moralis.EvmApi.transaction.getWalletTransactions({
+    const res = await Moralis.EvmApi.transaction.getWalletTransactionsVerbose({
       chain: "0x1", // ETH Mainnet
       address: address,
       limit: offset,
