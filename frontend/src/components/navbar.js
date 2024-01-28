@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-const Navbar = ({ submitHandler }) => {
+const Navbar = ({ submitHandler, searchTerm, setSearchTerm }) => {
   const inpurRef = useRef(null);
-  const [searchTerm, setSearchTerm] = useState("");
+
   const handler = (event) => {
     const isCtrlK = event.ctrlKey && event.key === "k";
     const enterKey = event.key === "Enter";
@@ -28,8 +28,16 @@ const Navbar = ({ submitHandler }) => {
   }, []);
 
   return (
-    <div className="w-full h-16 flex justify-between items-center bg-slate-800">
-      <div className="px-3 font-semibold"> EtherLens </div>
+    <div className="w-full h-16 flex justify-between items-center bg-slate-800 cursor-pointer">
+      <div
+        className="px-3 font-semibold"
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
+        {" "}
+        EtherLens{" "}
+      </div>
       <div className="w-1/2 flex">
         <input
           type="text"

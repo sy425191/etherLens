@@ -1,4 +1,4 @@
-const EmptyLanding = () => {
+const EmptyLanding = ({ submitHandler }) => {
   return (
     <div className="w-full h-[80%] flex justify-center items-center">
       <div className="w-1/2 flex flex-row justify-center items-center">
@@ -6,8 +6,13 @@ const EmptyLanding = () => {
           <div className="text-emerald-300">
             A Blockchain Explorer for the ETHER
           </div>
-          <div className="text-xs w-fit px-2 py-1 rounded-xl font-normal cursor-pointer border-2 border-slate-500 bg-slate-600 mt-8">
-            CTRL + K to search
+          <div
+            className="text-sm w-fit px-2 py-1 rounded-xl font-normal cursor-pointer border-2 border-slate-500 bg-slate-600 mt-8"
+            onClick={() => {
+              submitHandler("0x0aa8ebb6ad5a8e499e550ae2c461197624c6e667");
+            }}
+          >
+            See Preview
           </div>
         </div>
         <div className="absolute flex justify-center items-center">

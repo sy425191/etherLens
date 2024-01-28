@@ -5,8 +5,10 @@ import { addressInfo } from "../api";
 const LandingPage = () => {
   const [searchType, setSearchType] = useState("");
   const [searchResult, setSearchResult] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const submitHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
     const submitTermLength = searchTerm.length;
     if (submitTermLength === 42) {
       setSearchType("address");
@@ -25,10 +27,14 @@ const LandingPage = () => {
 
   return (
     <div className="w-full h-full text-white bg-slate-900">
-      <Navbar submitHandler={submitHandler} />
+      <Navbar
+        submitHandler={submitHandler}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       {!searchType ? (
-        <EmptyLanding />
+        <EmptyLanding submitHandler={submitHandler} />
       ) : searchType === "address" ? (
         <AddressScreen addressDetails={searchResult} />
       ) : (
