@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
 import addressInfo from "../api/account.js";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const searchContext = createContext();
 
 const SearchContextProvider = ({ children }) => {
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const [searchType, setSearchType] = useState("");
   const [searchResult, setSearchResult] = useState(null);
@@ -15,9 +15,9 @@ const SearchContextProvider = ({ children }) => {
     setSearchTerm(searchTerm);
     const submitTermLength = searchTerm.length;
     if (submitTermLength === 42) {
-      navigate("/address" + searchTerm);
+      navigate("/address/" + searchTerm);
     } else if (submitTermLength === 66) {
-      navigate("/txn" + searchTerm);
+      navigate("/txn/" + searchTerm);
     } else {
       // Snackbar
     }

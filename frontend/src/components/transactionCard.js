@@ -46,20 +46,20 @@ const TransactionCard = ({ txn }) => {
     <div className="w-full flex items-center justify-between text-xs bg-slate-700 px-2 py-2 rounded cursor-pointer hover:bg-slate-600">
       <Link
         to={"/txn/" + txn?.hash}
-        className="text-sm text-slate-300 text-slate-100 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+        className="text-sm text-slate-300 text-slate-100 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300 italic"
       >
         {txn?.hash.slice(0, 16) + "..."}
       </Link>
       <div className="text-sm text-slate-300">{txn?.block_number}</div>
       <Link
         to={"/address/" + txn?.from_address}
-        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300 italic"
       >
         {txn?.from_address.slice(0, 16) + "..."}
       </Link>
       <Link
         to={"/address/" + txn?.to_address}
-        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300 italic"
       >
         {txn?.to_address.slice(0, 16) + "..."}
       </Link>

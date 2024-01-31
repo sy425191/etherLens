@@ -55,7 +55,12 @@ const Navbar = () => {
           Search
         </div>
       </div>
-      <div className="flex justify-end items-center text-white pr-4">🔔</div>
+      <Link
+        to="/alert"
+        className="flex justify-end items-center text-white pr-4"
+      >
+        Alerts
+      </Link>
     </div>
   );
 };

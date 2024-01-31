@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import App from "./App";
 import { AddressScreen } from "./components";
+import AlertPage from "./pages/alert";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,7 +18,7 @@ const router = createBrowserRouter(
       <Route path="" element={<LandingPage />} />
       <Route path="address/:hash" element={<AddressScreen />} />
       <Route path="txn/:hash" />
-      <Route path="alert" />
+      <Route path="alert" element={<AlertPage />} />
     </Route>
   )
 );
