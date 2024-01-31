@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserNativeBalanceCard from "./userNativeBalanceCard";
 import UserTokenBalanceCard from "./userTokenBalanceCard";
 import TransactionCard from "./transactionCard";
+import { searchContext } from "../context/searchTermContext";
+import { useParams } from "react-router-dom";
+import AddressInfo from "../api/account";
 
-const AddressScreen = ({ addressDetails }) => {
+const AddressScreen = () => {
   const [txnType, setTxnType] = useState("transaction"); // transaction | internal_transaction
+  const { setSearchTerm } = useContext(searchContext);
+  const { hash } = useParams("hash");
+  const [addressDetails, setAddressDetails] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    AddressInfo(hash)
+      .then((res) => {
+        setAddressDetails(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    setSearchTerm(hash);
+  }, [hash]);
 
   return (
     <div className="w-full h-[88%] py-3 px-3 flex flex-row gap-x-6">
@@ -23,7 +44,7 @@ const AddressScreen = ({ addressDetails }) => {
               }`}
               onClick={() => setTxnType("transaction")}
             >
-              Transactions
+              Transction
             </div>
             <div
               className={`h-full px-4 rounded-2xl font-bold border-2 border-slate-600 py-1 cursor-pointer ml-2 ${

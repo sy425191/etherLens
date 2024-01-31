@@ -1,6 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { searchContext } from "../context/searchTermContext";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ submitHandler, searchTerm, setSearchTerm }) => {
+const Navbar = () => {
+  const { searchTerm, setSearchTerm, submitHandler } =
+    useContext(searchContext);
   const inpurRef = useRef(null);
 
   const handler = (event) => {
@@ -29,15 +33,10 @@ const Navbar = ({ submitHandler, searchTerm, setSearchTerm }) => {
 
   return (
     <div className="w-full h-16 flex justify-between items-center bg-slate-800 cursor-pointer">
-      <div
-        className="px-3 font-semibold"
-        onClick={() => {
-          window.location.reload();
-        }}
-      >
+      <Link to={"/"} className="px-3 font-semibold">
         {" "}
         EtherLens{" "}
-      </div>
+      </Link>
       <div className="w-1/2 flex">
         <input
           type="text"

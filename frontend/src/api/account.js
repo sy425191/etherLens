@@ -1,5 +1,5 @@
-const addressInfo = async (addressHash) => {
-  const uri = "address/" + addressHash;
+const AddressInfo = async (addressHash) => {
+  const uri = "/address/" + addressHash;
   try {
     const res = await fetch(uri);
     const data = await res.json();
@@ -10,4 +10,4 @@ const addressInfo = async (addressHash) => {
   }
 };
 
-export default addressInfo;
+export default AddressInfo;

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TimeAgo = (time) => {
   if (!time) return null;
   const date = new Date(time);
@@ -41,17 +43,26 @@ const TimeAgo = (time) => {
 
 const TransactionCard = ({ txn }) => {
   return (
-    <div className="w-full flex justify-between text-xs bg-slate-700 px-2 py-2 rounded cursor-pointer hover:bg-slate-600">
-      <div className="text-sm text-slate-300 text-slate-100">
+    <div className="w-full flex items-center justify-between text-xs bg-slate-700 px-2 py-2 rounded cursor-pointer hover:bg-slate-600">
+      <Link
+        to={"/txn/" + txn?.hash}
+        className="text-sm text-slate-300 text-slate-100 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+      >
         {txn?.hash.slice(0, 16) + "..."}
-      </div>
+      </Link>
       <div className="text-sm text-slate-300">{txn?.block_number}</div>
-      <div className="text-sm text-slate-300">
+      <Link
+        to={"/address/" + txn?.from_address}
+        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+      >
         {txn?.from_address.slice(0, 16) + "..."}
-      </div>
-      <div className="text-sm text-slate-300">
+      </Link>
+      <Link
+        to={"/address/" + txn?.to_address}
+        className="text-sm text-slate-300 border-2 border-slate-700 px-2 py-1 transition duration-300 border-dashed rounded-lg hover:border-slate-300"
+      >
         {txn?.to_address.slice(0, 16) + "..."}
-      </div>
+      </Link>
       <div className="text-sm text-slate-300">
         {TimeAgo(txn?.block_timestamp)}
       </div>
